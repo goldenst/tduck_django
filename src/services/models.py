@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class ServiceManager(models.Manager):
@@ -17,5 +18,10 @@ class Service(models.Model):
   
 
   objects = ServiceManager()
+
+  def get_absolute_url(self):
+    # return "/services/{pk}/".format(pk=self.pk)
+    return reverse('services:detail', kwargs={'pk': self.pk})
+
   def __str__(self):
     return self.name

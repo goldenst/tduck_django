@@ -1,5 +1,19 @@
-{% for obj in object_list %} 
-{{ obj.name }} 
-{{ obj.rate }} {{ obj.description }}<br />
+{%  extends  'base.html' %}
+{% load static %}
+{% block content %}
+<div class='container'>
+  <div class='row'>
+    {% for obj in object_list %}
+    <div class='col'>
+      {% include 'services/snippets/card.html' with instance=obj %}
+    </div>
 
-{% endfor %}
+
+
+
+
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

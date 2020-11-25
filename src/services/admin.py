@@ -1,5 +1,5 @@
 from django.contrib import admin
-gi
+
 
 from .models import Service
 

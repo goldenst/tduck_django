@@ -1,2 +1,21 @@
-{{ object.name }} 
-{{ object.description }} 
+{%  extends  'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class='container my-3'>
+
+
+  <div class="card" style="width: 20rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{object.name}}</h5>
+      <p class="card-text">{{ object.description }}:  ${{ object.rate }}</p>
+      <a href='{{ obj.get_absolute_url }} ' class="btn btn-primary">Edit</a>
+    </div>
+  </div>
+  </div>  
+<!-- {{ object.name }} 
+{{ object.description }}  -->
+
+
+{% endblock %}

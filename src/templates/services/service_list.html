@@ -2,16 +2,17 @@
 {% load static %}
 {% block content %}
 <div class='container'>
+  <h3>Services</h3>
   <div class='row'>
+    
     {% for obj in object_list %}
     <div class='col'>
       {% include 'services/snippets/card.html' with instance=obj %}
-    </div>
-
-
-
-
-
+      {% if forloop.counter|divisibleby:3  %}
+    </div> </div> <div class="row">
+    {% else %}
+</div>
+    {% endif %}
     {% endfor %}
   </div>
 </div>

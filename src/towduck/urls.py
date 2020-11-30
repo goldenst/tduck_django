@@ -5,17 +5,19 @@ from django.contrib import admin
 from django.urls import path, include
 
 
-
-from .views import home_page, about_page, contact_page, login_page, register_page
+from calls.views import cart_home
+from .views import home_page, about_page, contact_page, loginView, RegisterView, logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_page, name='home'),
     path('about/', about_page, name='about'),
     path('contact/', contact_page, name='contact'),
-    path('login/', login_page, name='login'),
-    path('register/', register_page, name='register'),
+    path('login/', loginView.as_view(), name='login'),
+    path('logout/', logout_view, name='logout'),
+    path('register/', RegisterView.as_view(), name='register'),
     path('services/', include('services.urls', namespace='services')),
+    path('calls', cart_home, name='cart'),
   
 ]
 

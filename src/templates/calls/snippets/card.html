@@ -1,0 +1,15 @@
+
+
+
+<div class='container my-3'>
+
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{obj.name}}</h5>
+    <p class="card-text">{{ obj.description }}:  ${{ obj.rate }}</p>
+    <a href='{{ obj.get_absolute_url }} ' class="btn btn-primary">Edit</a>
+    <!-- <a href='{% url "calls:detail"  pk=instance.pk %} ' class="btn btn-warning">shortcut</a> -->
+  </div>
+</div>
+</div>  

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
+from django.views.generic import CreateView, FormView
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login, get_user_model
+from django.contrib.auth import authenticate, login, get_user_model,logout
 
 from .forms import ContactForm, LoginForm, RegisterForm
 
@@ -26,42 +27,62 @@ def contact_page(request):
     #     print(request.POST.get('content'))
     return render(request,'contact_page.html', context)
     
+class loginView(FormView):
+    form_class = LoginForm
+    template_name = 'auth/login.html'
+    success_url = '/'
 
-def login_page(request):
-    form = LoginForm(request.POST or None)
-    context = {
-        'form' : form
-    }
-    # print('user is loged in:', request.user.is_authenticated)
-    if form.is_valid():
-        # print(form.cleaned_data)
-        username = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password')
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            context['form'] = LoginForm()
-            return redirect('/')
-            # print('user is loged in:', request.user.is_authenticated)
-        else:
-            print('error')
-            
-    return render(request,'auth/login.html', context)
-
-
-User = get_user_model()
-
-def register_page(request):
-    form = RegisterForm(request.POST or None)
-    context = {
-        'form' : form
-    }
-    if form.is_valid():
-        print(form.cleaned_data)
-        username = form.cleaned_data.get('username')
+    def form_valid(self, form):
+        request = self.request
         email = form.cleaned_data.get('email')
         password = form.cleaned_data.get('password')
-        new_user = User.objects.create_user(username, email, password)
-        print(new_user)
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            login(request, user)
+            # context['form'] = LoginForm()
+            return redirect('/')
+        return super(loginView, self).form_invalid(form)
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
+
+# def login_page(request):
+#     form = LoginForm(request.POST or None)
+#     context = {
+#         'form' : form
+#     }
+#     # print('user is loged in:', request.user.is_authenticated)
+#     if form.is_valid():
+#         # print(form.cleaned_data)
+#         username = form.cleaned_data.get('username')
+#         password = form.cleaned_data.get('password')
+#         user = authenticate(request, username=username, password=password)
+#         if user is not None:
+#             login(request, user)
+#             context['form'] = LoginForm()
+#             return redirect('/')
+#             # print('user is loged in:', request.user.is_authenticated)
+#         else:
+#             print('error')
+            
+#     return render(request,'auth/login.html', context)
+
+
+
+class RegisterView(CreateView):
+    form_class = RegisterForm
+    template_name = 'auth/register.html'
+    success_url = '/'
+
+# User = get_user_model()
+
+# def register_page(request):
+#     form = RegisterForm(request.POST or None)
+#     context = {
+#         'form' : form
+#     }
+#     if form.is_valid():
+#         form.save()
         
-    return render(request,'auth/register.html', context)
+#     return render(request,'auth/register.html', context)

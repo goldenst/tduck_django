@@ -7,6 +7,6 @@ app_name = 'services'
 
 urlpatterns = [
     
-    path('', ServiceListView.as_view()),
+    path('', ServiceListView.as_view(),name='list'),
     path('<pk>/', ServiceDetailView.as_view(), name='detail'),
 ]

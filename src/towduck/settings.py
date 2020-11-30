@@ -30,7 +30,10 @@ INSTALLED_APPS = [
 
     'calls',
     'services',
+    'company_info',
 ]
+
+AUTH_USER_MODEL = 'company_info.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -5,7 +5,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 
-from calls.views import cart_home
+# from calls.views import cart_home
 from .views import home_page, about_page, contact_page, loginView, RegisterView, logout_view
 
 urlpatterns = [
@@ -17,7 +17,7 @@ urlpatterns = [
     path('logout/', logout_view, name='logout'),
     path('register/', RegisterView.as_view(), name='register'),
     path('services/', include('services.urls', namespace='services')),
-    path('calls', cart_home, name='cart'),
+    path('calls/', include('calls.urls', namespace='calls')),
   
 ]
 

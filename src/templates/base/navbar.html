@@ -5,6 +5,7 @@
 {% url 'logout' as logout_url %}
 {% url 'register' as register_url %}
 {% url 'services:list' as services_url %}
+{% url 'calls:list' as calls_url %}
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -35,7 +36,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{services_url}}">Services</a>
-          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="{{calls_url}}">Calls</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>

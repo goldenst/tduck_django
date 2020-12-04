@@ -6,8 +6,8 @@
 
 <div class="card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">{{obj.name}}</h5>
-    <p class="card-text">{{ obj.description }}:  ${{ obj.rate }}</p>
+    <h5 class="card-title">{{obj.account}}</h5>
+    <p class="card-text">{{ obj.customerName }}:</p> <p> {{ obj.pickupLocation  }}</p>
     <a href='{{ obj.get_absolute_url }} ' class="btn btn-primary">Edit</a>
     <!-- <a href='{% url "calls:detail"  pk=instance.pk %} ' class="btn btn-warning">shortcut</a> -->
   </div>

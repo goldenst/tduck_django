@@ -1,8 +1,20 @@
 {%  extends  'base.html' %}
 {% load static %}
 {% block content %}
+<div class='container'>
+  <h3>Calls</h3>
+  <div class='row'>
+    
+    {% for obj in object_list %}
+    <div class='col'>
+      {% include 'calls/snippets/card.html' with instance=obj %}
+      {% if forloop.counter|divisibleby:3  %}
+    </div> </div> <div class="row">
+    {% else %}
+</div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
 
-
-    <h1>Calls / Cart</h1>
-
- {% endblock %}  
+{% endblock %}

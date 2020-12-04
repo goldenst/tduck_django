@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 
 from services.models import Service
 
@@ -8,6 +9,13 @@ from services.models import Service
 
 
 User = settings.AUTH_USER_MODEL
+
+class CallManager(models.Manager):
+  def get_by_id(self, id):
+    qs = self.get_queryset().filter(id=id)
+    if qs.count() == 1:
+      return qs.first()
+    return None
 
 class Call(models.Model):
   date                = models.DateTimeField(auto_now_add=True)
@@ -50,8 +58,14 @@ class Call(models.Model):
   ol                = models.DateTimeField(auto_now_add=False, blank=True, null=True)
   cl                = models.DateTimeField(auto_now_add=False, blank=True, null=True)
 
+  objects = CallManager()
+
+  def get_absolute_url(self):
+    # return "/calls/{pk}/".format(pk=self.pk)
+    return reverse('calls:detail', kwargs={'pk': self.pk})
+
   def __str__(self):
-    return self.requestedBy
+    return self.account
 
 
 

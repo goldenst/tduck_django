@@ -5,8 +5,107 @@
 <h2>Create Call</h2>
 
 <form method='POST'>{% csrf_token%}
-   {{ form }}
-    <button type="submit">Submit</button>
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <table class='table table-borderless'>
+                    <tbody>
+                        <tr>
+                            <th>Bill To:</th>
+                            <td>{{ form.account }}</td>
+                        </tr>
+                        <tr>
+                            <th>Call Number:</th>
+                            <td>{{ form.mcDispatchNumber }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-5">
+                <!--  Times section     -->
+                <table class='table table-borderless'>
+                    <tbody>
+                        <tr>
+                            <th>Recieved</th>
+                            <td>{{ form.re }}</td>
+                            <td><button>edit</button></td>
+                        </tr>
+                        <tr>
+                            <th>Dispatched</th>
+                            <td>{{ form.di}}</td>
+                            <td><button>disp</button></td>
+                        </tr>
+                        <tr>
+                            <th>in route</th>
+                            <td>{{ form.er }}</td>
+                            <td><button>10-8</button></td>
+                        </tr>
+                        <tr>
+                            <th>On Location</th>
+                            <td>{{ form.ol }}</td>
+                            <td><button>10-97</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <!-- Customer Info section  -->
+            <div class="col-10">
+
+                <h4>Customer info</h4>
+                <table class='table table-borderless'>
+                    <tbody>
+                        <tr>
+                            <td>Customer Name: </td>
+                            <td colspan="2"> {{ form.customerName }}</td>
+                            <td>Customer phone: </td>
+                            <td> {{ form.customerPhone }}</td>
+                        </tr>
+                        <tr>
+                            <td>Customer Address: </td>
+                            <td colspan="2"> {{ form.customerAddress }}</td>
+                            <td>Customer email: </td>
+                            <td> {{ form.customerEmail}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- Locations -->
+        <div class="row">
+            
+                <h4>Location</h4>
+                <div class="col-12">
+                    <table class='table table-borderless'>
+                        <tbody>
+                            <tr>
+                                <td>Breakdown Location :</td>
+                                <td>{{ form.pickupLocation }}</td>
+                                <td>Miles To location :</td>
+                                <td>{{ form.milesToVeh }}</td>
+
+                            </tr>
+                            <tr>
+                                <td>Tow Destination :</td>
+                                <td>{{ form.dropLocation }}</td>
+                                <td>Tow Distance :</td>
+                                <td>{{ form.milesTowed }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+        <!-- Vehicle section -->
+
+        <button type="submit">Submit</button>
+    </div>
+    
 </form>
+</div>
+
 
 {% endblock %}

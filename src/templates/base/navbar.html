@@ -6,6 +6,7 @@
 {% url 'register' as register_url %}
 {% url 'services:list' as services_url %}
 {% url 'calls:list' as calls_url %}
+{% url 'calls:create' as createcalls_url %}
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -21,7 +22,7 @@
       </li>
       <li class="nav-item {% if request.path == contact_url %} active{% endif %}">
         <a class="nav-link" href="{{ contact_url }}">Contact</a>
-     
+      </li>
     
       <!--  Admin Dropdown  -->
       {% if request.user.is_authenticated %}
@@ -32,18 +33,19 @@
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
+          add calls / service
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{services_url}}">Services</a>
-          <a class="dropdown-item" href="{{calls_url}}">Calls</a>
+          <a class="dropdown-item" href="{{createcalls_url}}">New Calls</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      <li class="nav-item {% if request.path == calls_url %} active{% endif %}">
+        <a class="nav-link" href="{{ calls_url }}">Calls</a>
       </li>
+      
       {% else %}
     </li>
     <li class="nav-item {% if request.path == login_url %} active{% endif %}">

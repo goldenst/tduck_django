@@ -2,110 +2,246 @@
 {% load static %}
 {% block content %}
 
-<h2>Create Call</h2>
-
-<form method='POST'>{% csrf_token%}
-    <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <table class='table table-borderless'>
-                    <tbody>
-                        <tr>
-                            <th>Bill To:</th>
-                            <td>{{ form.account }}</td>
-                        </tr>
-                        <tr>
-                            <th>Call Number:</th>
-                            <td>{{ form.mcDispatchNumber }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="col-5">
-                <!--  Times section     -->
-                <table class='table table-borderless'>
-                    <tbody>
-                        <tr>
-                            <th>Recieved</th>
-                            <td>{{ form.re }}</td>
-                            <td><button>edit</button></td>
-                        </tr>
-                        <tr>
-                            <th>Dispatched</th>
-                            <td>{{ form.di}}</td>
-                            <td><button>disp</button></td>
-                        </tr>
-                        <tr>
-                            <th>in route</th>
-                            <td>{{ form.er }}</td>
-                            <td><button>10-8</button></td>
-                        </tr>
-                        <tr>
-                            <th>On Location</th>
-                            <td>{{ form.ol }}</td>
-                            <td><button>10-97</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <!-- Customer Info section  -->
-            <div class="col-10">
-
-                <h4>Customer info</h4>
-                <table class='table table-borderless'>
-                    <tbody>
-                        <tr>
-                            <td>Customer Name: </td>
-                            <td colspan="2"> {{ form.customerName }}</td>
-                            <td>Customer phone: </td>
-                            <td> {{ form.customerPhone }}</td>
-                        </tr>
-                        <tr>
-                            <td>Customer Address: </td>
-                            <td colspan="2"> {{ form.customerAddress }}</td>
-                            <td>Customer email: </td>
-                            <td> {{ form.customerEmail}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!-- Locations -->
-        <div class="row">
-            
-                <h4>Location</h4>
-                <div class="col-12">
-                    <table class='table table-borderless'>
-                        <tbody>
-                            <tr>
-                                <td>Breakdown Location :</td>
-                                <td>{{ form.pickupLocation }}</td>
-                                <td>Miles To location :</td>
-                                <td>{{ form.milesToVeh }}</td>
-
-                            </tr>
-                            <tr>
-                                <td>Tow Destination :</td>
-                                <td>{{ form.dropLocation }}</td>
-                                <td>Tow Distance :</td>
-                                <td>{{ form.milesTowed }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-        </div>
-        <!-- Vehicle section -->
-
-        <button type="submit">Submit</button>
+<div class="container">
+    <br>
+    <div class="row">
+        <h2>Create Call</h2>
     </div>
     
-</form>
+
+    <form method='POST'>{% csrf_token%}
+            {{ form.as_p }}
+        <button type='submit' value="save">Submit</button>
+    </form>
 </div>
 
 
 {% endblock %}
+
+<div>
+    <div class="row">
+        <div class="col-4">
+            <table class='table table-borderless'>
+                <tbody>
+                    <tr>
+                        <th>Cash Tag #:</th>
+                        <td>{{ form.invoiceNumber }}</td>
+                    </tr>
+                    <tr>
+                        <th>Requested By:</th>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th>Bill To</th>
+                        <td>{{ form.account }}</td>
+                    </tr>
+                    <tr>
+                        <th>PO Number:</th>
+                        <td>{{ form.PoNumber }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <table class='table table-borderless'>
+                <tbody>
+                    <tr>
+                        <th>Dispatch Number:</th>
+                        <td>{{ form.mcDispatchNumber }}</td>
+                    </tr>
+                    <tr>
+                        <th>Membership #</th>
+                        <td>{{ form.mcMembershipNumber }}</td>
+                    </tr>
+                    <tr>
+                        <th>Coverage Limit:</th>
+                        <td>{{ form.mcCoverageAmount }}</td>
+                    </tr>
+                    <tr>
+                        <td>Driver: </td>
+                        <td > {{ form.driver }}</td>
+                
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-3">
+            <!--  Times section     -->
+            <table class='table table-borderless'>
+                <tbody>
+                    <tr>
+                        <th>Recieved</th>
+                        <td>{{ form.re }}</td>
+
+                    </tr>
+                    <tr>
+                        <th>Dispatched</th>
+                        <td>{{ form.di}}</td>
+
+                    </tr>
+                    <tr>
+                        <th>10-8</th>
+                        <td>{{ form.er }}</td>
+
+                    </tr>
+                    <tr>
+                        <th>10-97</th>
+                        <td>{{ form.ol }}</td>
+
+                    </tr>
+                    <tr>
+                        <th>Truck</th>
+                        <td>{{ form.truck }}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+    <hr>
+    
+    <h4>Customer info :</h4>
+    <div class="row">
+        <!-- Customer Info section  -->
+            <div class="row">
+                <div class="col">
+                    <table class='table table-borderless'>
+                        <tbody>
+                            <tr>
+                                <td>Customer Name: </td>
+                                <td > {{ form.customerName }}</td>
+                            </tr>
+                            <tr>
+                                <td>Customer phone: </td>
+                                <td> {{ form.customerPhone }}</td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                    <table class='table table-borderless'>
+                        <tbody>
+                            <tr>
+                                <td>Customer Address: </td>
+                                <td > {{ form.customerAddress }}</td>
+                            </tr>
+                            <tr>                                        
+                                <td>Customer email: </td>
+                                <td> {{ form.customerEmail}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    
+    <!-- Locations -->
+    <div class="row">
+
+        <h4>Location :</h4>
+        <div class="col-12">
+            <table class='table table-borderless'>
+                <tbody>
+                    <tr>
+                        <td>Breakdown Location :</td>
+                        <td>{{ form.pickupLocation }}</td>
+                        <td>Miles To location :</td>
+                        <td>{{ form.milesToVeh }}</td>
+
+                    </tr>
+                    <tr>
+                        <td>Tow Destination :</td>
+                        <td>{{ form.dropLocation }}</td>
+                        <td>Tow Distance :</td>
+                        <td>{{ form.milesTowed }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--  Services -->
+    <h5>Services:</h5>
+    <p>{{ form.services}}</p>
+    <h5>Total</h5>
+    <p> {{ form.total }}</p>
+
+    <!-- Vehicle section -->
+    <div class="row">
+        <h4> Vehicle Info:</h4>
+    </div>
+
+    <div class="row">
+
+        <div class="col">
+            <table class='table table-borderless'>
+                <tbody>
+                    <tr>
+                        <td>Vehicle Year</td>
+                        <td>{{ form.vehYear }}</td>
+                    </tr>
+                    <tr>
+                        <td>Vehicle Plate</td>
+                        <td>{{ form.vehLicence}}</td>
+                    </tr>
+                    <tr>
+                        <td>Vehicle Color</td>
+                        <td>{{ form.vehColor}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <table class='table table-borderless'>
+                <tbody>
+                    <tr>
+                        <td>Vehicle Make</td>
+                        <td>{{ form.vehMake }}</td>
+                    </tr>
+                    <tr>
+                        <td>Vehicle Plate State</td>
+                        <td>{{ form.vehLicenceState}}</td>
+                    </tr>
+                    <tr>
+                        <td>Vehicle Odom</td>
+                        <td>{{ form.vehOdom}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <table class='table table-borderless'>
+                <tbody>
+                    <tr>
+                        <td>Vehicle Model</td>
+                        <td>{{ form.vehModel }}</td>
+                    </tr>
+                    <tr>
+                        <td>Vehicle Vin</td>
+                        <td>{{ form.vehVin}}</td>
+                    </tr>
+                    <tr>
+                        <td>Vehicle Unit #</td>
+                        <td>{{ form.vehColor}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Notes -->
+    <div class="row">
+        <label> Notes:</label>
+        {{ form.notes}}
+    </div>
+    <div class="row">
+        <label>Billing Notes</label>
+        {{ form.billingNotes}}
+    </div>
+    <hr>
+    <div class="row">
+        
+    </div>
+</div>

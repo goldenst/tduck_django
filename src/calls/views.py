@@ -31,6 +31,16 @@ class CallDetailView(DetailView):
 
 
 class CallCreateView(CreateView):
+    # queryset = Call.objects.all()
     form_class = CallCreateForm
     template_name = 'calls/create_call.html'
-    success_url = '/'
+    success_url = '/calls'
+
+    def form_invalid(self, form):
+        print(ValueError)
+        
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+    
+   
